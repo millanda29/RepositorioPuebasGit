@@ -17,21 +17,26 @@ public class Conversiones {
         String d ="decimal", b ="binario", h ="hexadecimal", o ="octal";
         String tipo1, tipo2;
         String numero1;
-        int numero;
+        int number;
         System.out.println("Ingrese el numero que desea ingresar");
         numero1 = leer.next();
         System.out.println("Ingrese el tipo de numero(decimal, binario, hexadecimal, octal)");
         tipo1=leer.next();
         System.out.println("Ingrese a que desea convertir (decimal, binario, hexadecimal, octal)");
         tipo2=leer.next();
+        number = Integer.parseInt(numero1);
         
         if ( tipo1.equalsIgnoreCase(d)) {
             if ( tipo2.equalsIgnoreCase(b)) {
-                int number = Integer.parseInt(numero1);
-                conv.decimalToBinary(number);
-            } 
-            
-        } else {
+                
+                System.out.println("El numero: "+number+" en binario es: "+conv.decimalToBinary(number));
+            } else if (tipo2.equalsIgnoreCase(h)) {
+                System.out.println("El numero: "+number+" en binario es: "+conv.decimalToHexadecimal(number));
+            } else if (tipo2.equalsIgnoreCase(o)) {
+                System.out.println("El numero: "+number+" en binario es: "+conv.decimalToOctal(number));
+            } else {
+                System.out.println("El numero: "+number+" en decimal es: "+number);
+            }
             
         }
         leer.close();
