@@ -4,6 +4,9 @@
  */
 package serietylor;
 
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
+
 /**
  *
  * @author maikd
@@ -23,15 +26,16 @@ public class MetodoClass {
     }
 
     public static double evaluateFunction(String function, double x) {
-        // Aquí debes implementar un evaluador de expresiones matemáticas.
-        // Puedes usar bibliotecas como JEP (Java Expression Parser) o implementar uno simple.
-        // En este ejemplo, se asume que la función es del tipo "ax^2 + bx + c".
-        // Debes cambiar esta implementación según tus necesidades.
-        String[] coefficients = function.split("\\+|-");
-        double a = Double.parseDouble(coefficients[0]);
-        double b = Double.parseDouble(coefficients[1]);
-        double c = Double.parseDouble(coefficients[2]);
-        return a * x * x + b * x + c;
+        try {
+            Expression expression = new ExpressionBuilder(function)
+                    .variable("x")
+                    .build()
+                    .setVariable("x", x);
+            return expression.evaluate();
+        } catch (Exception e) {
+            System.err.println("Error evaluando la función: " + e.getMessage());
+            return Double.NaN;
+        }
     }
 
     public static int factorial(int n) {
